@@ -23,8 +23,8 @@ const Hero: React.FC<HeroProps> = ({ scrollToSection }) => {
               Développeur Power Platform & JavaScript
             </h2>
             <p className="text-lg sm:text-xl text-[#F5F5F5]/70 max-w-3xl mx-auto leading-relaxed">
-              Passionné par la tech, l'UX et les solutions Power Platform. 
-              Je transforme vos besoins métier en applications performantes et intuitives.
+             J’aide les équipes à transformer des idées métiers complexes en applications simples et efficaces, en conjuguant automatisation, ergonomie et performance.
+Entre UX, low-code et logique API, je construis des solutions durables, pensées pour les utilisateurs comme pour les équipes techniques.
             </p>
           </div>
 
