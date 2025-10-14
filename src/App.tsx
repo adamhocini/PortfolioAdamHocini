@@ -7,14 +7,16 @@ import ProjectsPage from './components/ProjectsPage';
 import Skills from './components/Skills';
 import Future from './components/Future';
 import Contact from './components/Contact';
+import CvPage from './components/CvPage';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [showProjectsPage, setShowProjectsPage] = useState(false);
+  const [showCvPage, setShowCvPage] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (showProjectsPage) return; // Don't update active section when on projects page
+      if (showProjectsPage || showCvPage) return; // Don't update active section when on dedicated pages
       
       const sections = ['home', 'about', 'projects', 'skills', 'future', 'contact'];
       const currentSection = sections.find(section => {
@@ -33,7 +35,7 @@ function App() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [showProjectsPage]);
+  }, [showProjectsPage, showCvPage]);
 
   const scrollToSection = (sectionId: string) => {
     if (showProjectsPage) {
@@ -68,13 +70,33 @@ function App() {
     }, 100);
   };
 
+  const handleOpenCv = () => {
+    setShowCvPage(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackFromCv = () => {
+    setShowCvPage(false);
+    setTimeout(() => {
+      scrollToSection('about');
+    }, 100);
+  };
+
   if (showProjectsPage) {
     return <ProjectsPage onBack={handleBackFromProjects} />;
   }
 
+  if (showCvPage) {
+    return <CvPage onBack={handleBackFromCv} />;
+  }
+
   return (
     <div className="min-h-screen bg-[#1A151F] text-[#F5F5F5]">
-      <Header activeSection={activeSection} setActiveSection={setActiveSection} />
+      <Header
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+        onOpenCv={handleOpenCv}
+      />
       <main>
         <Hero scrollToSection={scrollToSection} />
         <About />

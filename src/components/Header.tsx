@@ -4,9 +4,10 @@ import { Menu, X, Code, User, Briefcase, Target, Mail } from 'lucide-react';
 interface HeaderProps {
   activeSection: string;
   setActiveSection: (section: string) => void;
+  onOpenCv: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
+const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection, onOpenCv }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -47,7 +48,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center space-x-4">
             <div className="ml-10 flex items-baseline space-x-4">
               {navItems.map(({ id, label }) => (
                 <button
@@ -63,6 +64,12 @@ const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
                 </button>
               ))}
             </div>
+            <button
+              onClick={onOpenCv}
+              className="px-4 py-2 rounded-md text-sm font-semibold bg-[#00C897] text-[#1A151F] hover:bg-[#00A082] transition-colors duration-200"
+            >
+              Mon CV
+            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -94,6 +101,15 @@ const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
                   {label}
                 </button>
               ))}
+              <button
+                onClick={() => {
+                  onOpenCv();
+                  setIsMenuOpen(false);
+                }}
+                className="flex items-center justify-center w-full px-3 py-2 rounded-md text-base font-semibold bg-[#00C897] text-[#1A151F] hover:bg-[#00A082] transition-colors duration-200"
+              >
+                Mon CV
+              </button>
             </div>
           </div>
         )}
