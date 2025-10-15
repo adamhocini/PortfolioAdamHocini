@@ -14,6 +14,56 @@ import {
 } from 'lucide-react';
 import InteractiveGlowCard from './InteractiveGlowCard';
 
+type SectionAlign = 'left' | 'center';
+
+type SectionAccent = 'emerald' | 'violet';
+
+interface SectionHeaderProps {
+  label: string;
+  title: React.ReactNode;
+  description?: string;
+  icon?: React.ComponentType<{ size?: number }>;
+  align?: SectionAlign;
+  accent?: SectionAccent;
+}
+
+const accentStyles: Record<SectionAccent, string> = {
+  emerald: 'bg-[#00C897]/15 text-[#00C897]',
+  violet: 'bg-[#7C4DFF]/15 text-[#B388FF]',
+};
+
+const SectionHeader: React.FC<SectionHeaderProps> = ({
+  label,
+  title,
+  description,
+  icon: Icon,
+  align = 'left',
+  accent = 'emerald',
+}) => (
+  <div className={`flex flex-col gap-6 ${align === 'center' ? 'items-center text-center' : 'items-start text-left'}`}>
+    <div className={`flex items-center gap-4 ${align === 'center' ? 'justify-center' : ''}`}>
+      {Icon && (
+        <div className={`flex h-12 w-12 items-center justify-center rounded-2xl ${accentStyles[accent]}`}>
+          <Icon size={24} />
+        </div>
+      )}
+      <div className={`${align === 'center' ? 'space-y-3' : 'space-y-2'}`}>
+        <p className="text-xs uppercase tracking-[0.35em] text-white/50">{label}</p>
+        <h3 className="text-3xl md:text-4xl font-semibold text-white">{title}</h3>
+      </div>
+    </div>
+    {description && (
+      <p
+        className={`text-base leading-relaxed text-white/65 ${
+          align === 'center' ? 'max-w-3xl' : 'max-w-2xl'
+        }`}
+      >
+        {description}
+      </p>
+    )}
+  </div>
+);
+
 const About: React.FC = () => {
   const experienceHighlights = [
     {
@@ -53,27 +103,24 @@ const About: React.FC = () => {
       description:
         'Définissons les objectifs, les usages clés et l’architecture fonctionnelle pour aligner la solution avec vos enjeux métiers.',
       icon: Compass,
-      accent: 'from-[#1F8A6F]/40 via-[#191422]/80 to-[#191422]/80',
     },
     {
       phase: 'Phase 2',
       title: 'Design & Prototype',
       description: 'Création d’expériences centrées utilisateurs, maquettes interactives et validation rapide.',
       icon: Sparkles,
-      accent: 'from-[#5036A8]/25 via-[#191422]/80 to-[#191422]/80',
     },
     {
       phase: 'Phase 3',
       title: 'Déploiement & Suivi',
       description: 'Industrialisation, transfert de compétences et amélioration continue post-livraison.',
       icon: Rocket,
-      accent: 'from-[#00C897]/25 via-[#191422]/80 to-[#191422]/80',
     },
   ];
 
   const education = [
     {
-      degree: 'Mastère ESI – Expert en Systèmes d\'Information Innovants',
+      degree: "Mastère ESI – Expert en Systèmes d'Information Innovants",
       school: 'Isitech / EDF',
       year: '2023 - 2024',
     },
@@ -127,7 +174,7 @@ const About: React.FC = () => {
     { icon: Search, label: 'Organisation', desc: 'Structuration des processus et priorisation des actions' },
     { icon: Heart, label: 'Leadership', desc: "Animation d'équipes et accompagnement au changement" },
     { icon: Leaf, label: 'Adaptabilité', desc: 'Capacité à évoluer dans des environnements multiples' },
-    { icon: Users, label: "Communication", desc: 'Relation client et partage des enjeux avec les parties prenantes' },
+    { icon: Users, label: 'Communication', desc: 'Relation client et partage des enjeux avec les parties prenantes' },
   ];
 
   return (
@@ -139,73 +186,85 @@ const About: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
-          <p className="text-sm uppercase tracking-[0.35em] text-[#00C897]/70 mb-4">À propos</p>
-          <h2 className="text-4xl md:text-5xl font-semibold text-white">
-            Mon parcours allie <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C4DFF] via-[#B388FF] to-[#00C897]">stratégie</span> et
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00C897] via-[#7C4DFF] to-[#B388FF]"> innovation</span>
-          </h2>
-          <p className="mt-6 text-lg text-white/70 max-w-3xl mx-auto leading-relaxed">
-            Je transforme les idées métiers en produits digitaux pérennes en orchestrant design, technologie et accompagnement du changement.
-          </p>
+        <div className="mb-20">
+          <SectionHeader
+            label="À propos"
+            align="center"
+            title={
+              <>
+                Mon parcours allie{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C4DFF] via-[#B388FF] to-[#00C897]">
+                  stratégie
+                </span>{' '}
+                et
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00C897] via-[#7C4DFF] to-[#B388FF]">
+                  {' '}
+                  innovation
+                </span>
+              </>
+            }
+            description="Je transforme les idées métiers en produits digitaux pérennes en orchestrant design, technologie et accompagnement du changement."
+          />
         </div>
 
         <div className="space-y-20">
-          <div>
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
-              <div>
-                <p className="text-sm uppercase tracking-[0.4em] text-white/50 mb-3">PARCOURS</p>
-                <h3 className="text-3xl md:text-4xl font-semibold text-white">
-                  Expérience <span className="text-[#8E5BFF]">professionnelle</span>
-                </h3>
-              </div>
-              <div className="text-white/60 text-base max-w-xl">
-                Des missions transverses où je conçois, pilote et déploie des solutions Power Platform et JavaScript répondant à des enjeux concrets.
-              </div>
-            </div>
+          <div className="flex flex-col gap-10">
+            <SectionHeader
+              label="PARCOURS"
+              title={
+                <>
+                  Expérience{' '}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C4DFF] to-[#00C897]">professionnelle</span>
+                </>
+              }
+              description="Des missions transverses où je conçois, pilote et déploie des solutions Power Platform et JavaScript répondant à des enjeux concrets."
+            />
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
               {experienceHighlights.map(({ icon: Icon, title, description, tag }) => (
                 <InteractiveGlowCard key={title} className="p-6">
-                  <div className="flex flex-col h-full">
-                    <div className="flex items-center gap-3 mb-6">
+                  <div className="flex flex-col h-full gap-5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-medium uppercase tracking-[0.35em] text-white/60">{tag}</span>
                       <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#00C897]/15 text-[#00C897]">
-                        <Icon size={24} />
+                        <Icon size={22} />
                       </div>
-                      <span className="text-sm font-medium uppercase tracking-[0.2em] text-white/60">{tag}</span>
                     </div>
-                    <h4 className="text-xl font-semibold text-white mb-4 leading-snug">{title}</h4>
-                    <p className="text-white/70 leading-relaxed text-sm">{description}</p>
+                    <div className="space-y-3">
+                      <h4 className="text-xl font-semibold text-white leading-snug">{title}</h4>
+                      <p className="text-white/70 text-sm leading-relaxed">{description}</p>
+                    </div>
                   </div>
                 </InteractiveGlowCard>
               ))}
             </div>
           </div>
 
-          <div>
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
-              <div>
-                <p className="text-sm uppercase tracking-[0.4em] text-white/50 mb-3">Méthode</p>
-                <h3 className="text-3xl md:text-4xl font-semibold text-white">
-                  Mon <span className="text-[#00C897]">Approche</span>
-                </h3>
-              </div>
-              <div className="text-white/60 text-base max-w-xl">
-                Une démarche en trois temps pour cadrer, designer et déployer des solutions adoptées par les utilisateurs.
-              </div>
-            </div>
+          <div className="flex flex-col gap-10">
+            <SectionHeader
+              label="Méthode"
+              title={
+                <>
+                  Mon{' '}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00C897] to-[#7C4DFF]">approche</span>
+                </>
+              }
+              description="Une démarche en trois temps pour cadrer, designer et déployer des solutions adoptées par les utilisateurs."
+            />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {approachPhases.map(({ phase, title, description, icon: Icon, accent }) => (
-                <InteractiveGlowCard key={phase} className="p-7">
-                  <div className={`rounded-2xl bg-gradient-to-br ${accent} p-[1px] mb-6`}>
-                    <div className="rounded-[1.1rem] bg-[#18111F]/95 px-4 py-3 flex items-center justify-between">
+              {approachPhases.map(({ phase, title, description, icon: Icon }) => (
+                <InteractiveGlowCard key={phase} className="p-6">
+                  <div className="flex flex-col gap-5">
+                    <div className="flex items-center justify-between">
                       <span className="text-xs uppercase tracking-[0.35em] text-white/50">{phase}</span>
                       <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#00C897]/15 text-[#00C897]">
                         <Icon size={20} />
                       </div>
                     </div>
+                    <div className="space-y-3">
+                      <h4 className="text-xl font-semibold text-white">{title}</h4>
+                      <p className="text-white/70 text-sm leading-relaxed">{description}</p>
+                    </div>
                   </div>
-                  <h4 className="text-xl font-semibold text-white mb-3">{title}</h4>
-                  <p className="text-white/70 text-sm leading-relaxed">{description}</p>
                 </InteractiveGlowCard>
               ))}
             </div>
@@ -213,26 +272,20 @@ const About: React.FC = () => {
 
           <div className="grid grid-cols-1 xl:grid-cols-[1.1fr_0.9fr] gap-12">
             <div>
-              <div className="flex items-center gap-3 mb-8">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#00C897]/15 text-[#00C897]">
-                  <Briefcase size={24} />
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.35em] text-white/50">PARCOURS</p>
-                  <h3 className="text-2xl md:text-3xl font-semibold text-white">Expérience professionnelle</h3>
-                </div>
+              <div className="mb-8">
+                <SectionHeader label="PARCOURS" title="Expérience professionnelle" icon={Briefcase} />
               </div>
               <div className="space-y-6">
                 {experience.map((exp, index) => (
                   <InteractiveGlowCard key={index} className="p-6">
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-5">
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <h4 className="text-lg font-semibold text-white">{exp.role}</h4>
-                        <span className="text-xs font-medium uppercase tracking-[0.3em] text-[#00C897] bg-[#00C897]/10 px-4 py-2 rounded-full">
+                        <span className="text-xs font-medium uppercase tracking-[0.3em] text-white/70 bg-white/10 px-3 py-1.5 rounded-full">
                           {exp.period}
                         </span>
                       </div>
-                      <p className="text-sm font-semibold text-white/80 uppercase tracking-[0.3em]">{exp.company}</p>
+                      <p className="text-sm text-white/65 font-medium">{exp.company}</p>
                       <p className="text-sm text-white/70 leading-relaxed">{exp.description}</p>
                     </div>
                   </InteractiveGlowCard>
@@ -242,24 +295,18 @@ const About: React.FC = () => {
 
             <div className="space-y-10">
               <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#7C4DFF]/15 text-[#B388FF]">
-                    <GraduationCap size={24} />
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.35em] text-white/50">FORMATION</p>
-                    <h3 className="text-2xl font-semibold text-white">Parcours académique</h3>
-                  </div>
+                <div className="mb-6">
+                  <SectionHeader label="FORMATION" title="Parcours académique" icon={GraduationCap} accent="violet" />
                 </div>
                 <div className="space-y-4">
                   {education.map((edu, index) => (
-                    <InteractiveGlowCard key={index} className="p-4">
+                    <InteractiveGlowCard key={index} className="p-5">
                       <div className="flex flex-wrap items-center justify-between gap-3">
-                        <div>
+                        <div className="space-y-2">
                           <h4 className="text-white font-semibold">{edu.degree}</h4>
                           <p className="text-white/60 text-sm">{edu.school}</p>
                         </div>
-                        <span className="text-xs uppercase tracking-[0.3em] text-white/60 bg-white/5 px-4 py-1 rounded-full">
+                        <span className="text-xs uppercase tracking-[0.3em] text-white/70 bg-white/10 px-3 py-1 rounded-full">
                           {edu.year}
                         </span>
                       </div>
@@ -269,24 +316,20 @@ const About: React.FC = () => {
               </div>
 
               <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#00C897]/15 text-[#00C897]">
-                    <BarChart3 size={24} />
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.35em] text-white/50">SOFT SKILLS</p>
-                    <h3 className="text-2xl font-semibold text-white">Qualités personnelles</h3>
-                  </div>
+                <div className="mb-6">
+                  <SectionHeader label="SOFT SKILLS" title="Qualités personnelles" icon={BarChart3} />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {qualities.map(({ icon: Icon, label, desc }, index) => (
-                    <InteractiveGlowCard key={index} className="p-5 text-center">
-                      <div className="flex flex-col items-center gap-3">
+                    <InteractiveGlowCard key={index} className="p-6 text-center">
+                      <div className="flex flex-col items-center gap-4">
                         <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#00C897]/15 text-[#00C897]">
                           <Icon size={22} />
                         </div>
-                        <h4 className="text-white font-semibold">{label}</h4>
-                        <p className="text-white/70 text-sm leading-relaxed">{desc}</p>
+                        <div className="space-y-2">
+                          <h4 className="text-white font-semibold">{label}</h4>
+                          <p className="text-white/70 text-sm leading-relaxed">{desc}</p>
+                        </div>
                       </div>
                     </InteractiveGlowCard>
                   ))}
