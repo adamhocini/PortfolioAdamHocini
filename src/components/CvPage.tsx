@@ -1,18 +1,25 @@
 import React from 'react';
 import {
   ArrowLeft,
-  Briefcase,
-  GraduationCap,
-  Wrench,
   Award,
-  Mail,
-  Phone,
-  MapPin,
-  Languages,
-  UserCheck,
   Brain,
+  Briefcase,
+  CalendarDays,
+  Car,
+  GraduationCap,
+  IdCard,
+  Languages,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  Rocket,
+  Sparkles,
+  Target,
+  UserCheck,
   Workflow,
-  Rocket
+  Wrench,
+  Globe2,
 } from 'lucide-react';
 
 interface CvPageProps {
@@ -20,79 +27,177 @@ interface CvPageProps {
 }
 
 const CvPage: React.FC<CvPageProps> = ({ onBack }) => {
+  const headerRoles = 'Chef de projet IT | Product Owner | Consultant Power Platform';
+
+  const profileDetails = [
+    { icon: IdCard, label: 'Nom', value: 'Hocini Adam' },
+    { icon: CalendarDays, label: 'Date de naissance', value: '21/02/2000' },
+    { icon: Car, label: 'Permis', value: 'Permis B – véhicule personnel' },
+  ];
+
   const experiences = [
     {
-      role: 'Consultant Power Platform',
+      role: 'Chef de projet & Développeur Power Platform',
       company: 'EDF',
-      period: '2024 - Aujourd\'hui',
+      period: "2023 - Aujourd'hui",
       location: 'Lyon, France',
       description:
-        'Conception et déploiement de solutions Power Platform à forte valeur ajoutée pour les métiers.',
+        'Assistant chef de projet IT en alternance au sein de la DSI EDF, responsable de la gouvernance et du delivery Power Platform.',
       achievements: [
-        'Industrialisation d\'applications métiers avec automatisations Power Automate',
-        'Mise en place de tableaux de bord Power BI pour le suivi des indicateurs clés',
-        'Formation et accompagnement des équipes sur les bonnes pratiques Power Platform'
+        'Pilotage d’un portefeuille de 8 solutions Power Platform et animation des comités de gouvernance',
+        'Industrialisation d’applications métiers (Power Apps, Power Automate, Power BI) pour optimiser les processus opérationnels',
+        'Accompagnement des équipes métiers sur les bonnes pratiques et la conduite du changement',
       ],
-      tech: ['Power Apps', 'Power Automate', 'Power BI', 'Dataverse', 'SharePoint']
+      tech: ['Power Apps', 'Power Automate', 'Power BI', 'Dataverse', 'Azure DevOps'],
     },
     {
-      role: 'Développeur Full Stack',
-      company: 'Isitech',
-      period: '2023 - 2024',
+      role: 'Consultant Power Platform',
+      company: 'Digiuz',
+      period: '2022 - 2023',
       location: 'Lyon, France',
       description:
-        'Développement d\'applications web et mobiles dans le cadre de projets académiques et professionnels.',
+        'Consultant pour des clients grands comptes et ETI sur la conception et le déploiement de solutions Power Platform.',
       achievements: [
-        'Co-conception de GymUnity, application mobile sociale pour sportifs',
-        'Participation au développement de Maat, plateforme de diagnostic RSE',
-        'Mise en place de pipelines CI/CD et intégration de services cloud'
+        'Cadrage des besoins et rédaction des spécifications fonctionnelles',
+        'Conception de solutions Power Apps / Automate intégrées à Microsoft 365 et Dataverse',
+        'Planification agile et coordination des équipes projet avec reporting régulier',
       ],
-      tech: ['React', 'React Native', 'Node.js', '.NET', 'PostgreSQL', 'Firebase']
-    }
+      tech: ['Power Apps', 'Power Automate', 'Power BI', 'SharePoint', 'Gestion de projet'],
+    },
+    {
+      role: 'Responsable logistique & management',
+      company: 'Carrefour Drive',
+      period: '2020 - 2022',
+      location: 'Toulouse, France',
+      description:
+        'Responsable d’une équipe opérationnelle au sein d’un drive alimentaire à fort volume.',
+      achievements: [
+        'Management et montée en compétences d’une équipe de 12 collaborateurs',
+        'Optimisation des tournées et des flux logistiques pour réduire les délais de préparation',
+        'Suivi des indicateurs qualité et relation client au quotidien',
+      ],
+      tech: ['Management', 'Logistique', 'Lean', 'Relation client'],
+    },
   ];
 
   const education = [
     {
-      degree: 'Mastère Expert en Développement Web',
-      school: 'Isitech',
-      period: '2023 - 2025',
-      details: ['Spécialisation Power Platform', 'Architecture logicielle', 'Management de projet']
+      degree: 'Mastère ESI – Expert en Systèmes d’Information Innovants',
+      school: 'Isitech / EDF',
+      period: '2023 - 2024',
+      details: [
+        'Pilotage de projets digitaux et gouvernance SI',
+        'Spécialisation Power Platform & Microsoft 365',
+      ],
     },
     {
-      degree: 'Bachelor Développement Web',
+      degree: 'Master RPI – Responsable de Projets Informatiques',
       school: 'Isitech',
-      period: '2020 - 2023',
-      details: ['Développement full stack', 'UI/UX', 'Méthodes agiles']
-    }
+      period: '2022 - 2023',
+      details: ['Conduite de projet, innovation et accompagnement du changement'],
+    },
+    {
+      degree: 'Bachelor Business & IT',
+      school: 'EM Normandie',
+      period: '2021 - 2022',
+      details: ['Management digital et pilotage de l’expérience client'],
+    },
+    {
+      degree: 'BTS SIO – Solutions logicielles & applications métiers',
+      school: 'Lycée Ozenne',
+      period: '2019 - 2021',
+      details: ['Développement applicatif et administration systèmes'],
+    },
+    {
+      degree: 'Baccalauréat STMG – Gestion & Finance',
+      school: 'Lycée Ozenne',
+      period: '2017',
+      details: ['Spécialisation gestion et finance'],
+    },
   ];
 
   const skills = [
     {
+      title: 'Gestion de projet',
+      icon: Target,
+      items: ['Cadrage & expression des besoins', 'Roadmap, budgets et indicateurs', 'Animation d’ateliers & reporting'],
+    },
+    {
       title: 'Power Platform',
       icon: Brain,
-      items: ['Power Apps Canvas & Model-Driven', 'Power Automate (cloud & desktop)', 'Power BI', 'Dataverse']
+      items: ['Power Apps (Canvas & Model-driven)', 'Power Automate cloud & desktop', 'Power BI & Dataverse'],
     },
     {
-      title: 'Développement Web',
+      title: 'Développement & Cloud',
       icon: Workflow,
-      items: ['React & TypeScript', 'Node.js / Express', 'Tailwind CSS', 'Blazor WebAssembly']
+      items: ['React & TypeScript', 'Intégrations Microsoft 365 & Azure', 'Conception API & CI/CD'],
     },
     {
-      title: 'DevOps & Outils',
+      title: 'Méthodes & Qualité',
       icon: Wrench,
-      items: ['Azure DevOps', 'GitHub Actions', 'CI/CD', 'Docker & conteneurisation']
-    }
+      items: ['Agile / Scrum & Kanban', 'Tests automatisés & documentation', 'Conduite du changement'],
+    },
   ];
 
   const languagesData = [
     { label: 'Français', level: 'Langue maternelle' },
-    { label: 'Anglais', level: 'Professionnel (B2)' }
+    { label: 'Anglais', level: 'Professionnel (B2)' },
   ];
+
+  const softSkills = [
+    'Management d’équipe',
+    'Communication & pédagogie',
+    'Sens de l’organisation',
+    'Autonomie & proactivité',
+    'Résolution de problèmes',
+    'Curiosité technologique',
+  ];
+
+  const projects = [
+    {
+      name: 'GGA – Gestion des Garanties Automobiles',
+      period: '2023',
+      role: 'Chef de projet Power Platform',
+      description:
+        'Plateforme Power Apps pour centraliser le suivi des garanties automobiles du groupe EDF.',
+      highlights: [
+        'Construction du cahier des charges et du backlog fonctionnel',
+        'Animation des ateliers utilisateurs et conduite des tests d’acceptation',
+        'Déploiement progressif auprès de 200 utilisateurs métiers',
+      ],
+    },
+    {
+      name: 'Solar Experience',
+      period: '2022',
+      role: 'Product Owner',
+      description:
+        'Solution Power Platform pour piloter les installations photovoltaïques et la maintenance associée.',
+      highlights: [
+        'Modélisation Dataverse et automatisation des workflows de maintenance',
+        'Suivi des performances énergétiques via tableaux de bord Power BI',
+        'Structuration du support et du plan de formation utilisateurs',
+      ],
+    },
+    {
+      name: 'SportUnity',
+      period: '2021',
+      role: 'Chef de projet digital',
+      description:
+        'Application mobile communautaire favorisant la pratique sportive collaborative.',
+      highlights: [
+        'Pilotage d’une équipe pluridisciplinaire (design, développement, marketing)',
+        'Définition du parcours utilisateur et des fonctionnalités différenciantes',
+        'Mise en place des indicateurs de suivi et du plan de lancement',
+      ],
+    },
+  ];
+
+  const interests = ['Innovation', 'Technologie', 'Musique', 'Voyages', 'Smart home & IoT'];
 
   const certifications = [
     'Microsoft PL-900: Power Platform Fundamentals',
     'Scrum Fundamentals Certified',
-    'Azure AZ-900 (en cours)'
+    'Azure AZ-900 (en cours)',
   ];
 
   return (
@@ -117,35 +222,56 @@ const CvPage: React.FC<CvPageProps> = ({ onBack }) => {
                 <h1 className="text-4xl sm:text-5xl font-bold text-[#F5F5F5] mb-4">
                   Adam Hocini
                 </h1>
-                <p className="text-xl text-[#F5F5F5]/80 mb-6">
-                  Développeur Power Platform & Full Stack
-                </p>
+                <p className="text-xl text-[#F5F5F5]/80 mb-4">{headerRoles}</p>
                 <p className="text-[#F5F5F5]/70 max-w-2xl">
-                  Passionné par la création de solutions business performantes et intuitives, j\'accompagne les organisations dans leur transformation digitale grâce à la Power Platform et aux technologies web modernes.
+                  Assistant chef de projet IT en alternance chez EDF, spécialisé dans la conception et la gestion de solutions Microsoft Power Platform.
+                  J’accompagne les équipes métiers pour transformer leurs processus en produits digitaux performants, gouvernés et orientés expérience utilisateur.
                 </p>
+                <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm text-[#F5F5F5]/75">
+                  {profileDetails.map(detail => {
+                    const Icon = detail.icon;
+                    return (
+                      <div
+                        key={detail.label}
+                        className="flex items-center gap-3 rounded-lg border border-[#363646] bg-[#2A2433] px-4 py-3"
+                      >
+                        <Icon size={18} className="text-[#00C897]" />
+                        <div>
+                          <p className="text-xs uppercase tracking-[0.25em] text-[#F5F5F5]/50">{detail.label}</p>
+                          <p className="font-medium text-[#F5F5F5]">{detail.value}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
               <div className="bg-[#2A2433] rounded-xl p-6 border border-[#363646] w-full lg:w-80">
                 <h2 className="text-lg font-semibold text-[#F5F5F5] mb-4">Coordonnées</h2>
                 <div className="space-y-3 text-sm text-[#F5F5F5]/80">
                   <div className="flex items-center">
                     <Mail size={18} className="mr-3 text-[#00C897]" />
-                    <a href="mailto:adam.hocini@outlook.fr" className="hover:text-[#00C897] transition-colors duration-200">
-                      adam.hocini@outlook.fr
+                    <a href="mailto:adam.hocini@icloud.com" className="hover:text-[#00C897] transition-colors duration-200">
+                      adam.hocini@icloud.com
                     </a>
                   </div>
                   <div className="flex items-center">
                     <Phone size={18} className="mr-3 text-[#00C897]" />
-                    <span>+33 6 12 34 56 78</span>
+                    <span>+33 6 51 57 03 02</span>
                   </div>
                   <div className="flex items-center">
                     <MapPin size={18} className="mr-3 text-[#00C897]" />
                     <span>Lyon, France</span>
                   </div>
                   <div className="flex items-center">
-                    <Languages size={18} className="mr-3 text-[#00C897]" />
-                    <span>
-                      {languagesData.map(lang => lang.label).join(' • ')}
-                    </span>
+                    <Linkedin size={18} className="mr-3 text-[#00C897]" />
+                    <a
+                      href="https://www.linkedin.com/in/adam-hocini"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-[#00C897] transition-colors duration-200"
+                    >
+                      linkedin.com/in/adam-hocini
+                    </a>
                   </div>
                 </div>
               </div>
@@ -214,12 +340,40 @@ const CvPage: React.FC<CvPageProps> = ({ onBack }) => {
                     ))}
                   </div>
                 </section>
+
+                <section>
+                  <div className="flex items-center mb-6">
+                    <Rocket className="text-[#00C897] mr-3" size={24} />
+                    <h2 className="text-2xl font-semibold">Projets professionnels</h2>
+                  </div>
+                  <div className="space-y-6">
+                    {projects.map(project => (
+                      <div key={project.name} className="bg-[#2A2433] border border-[#363646] rounded-xl p-6">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+                          <div>
+                            <h3 className="text-xl font-semibold text-[#F5F5F5]">{project.name}</h3>
+                            <p className="text-[#F5F5F5]/70">{project.role}</p>
+                          </div>
+                          <span className="mt-2 sm:mt-0 inline-flex items-center px-3 py-1 rounded-full bg-[#00C897]/10 text-[#00C897] text-sm">
+                            {project.period}
+                          </span>
+                        </div>
+                        <p className="text-[#F5F5F5]/70 mb-3">{project.description}</p>
+                        <ul className="space-y-2 text-sm text-[#F5F5F5]/80 list-disc list-inside">
+                          {project.highlights.map(highlight => (
+                            <li key={highlight}>{highlight}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </section>
               </div>
 
               <div className="space-y-8">
                 <section className="bg-[#2A2433] border border-[#363646] rounded-xl p-6">
                   <div className="flex items-center mb-4">
-                    <Rocket className="text-[#00C897] mr-3" size={22} />
+                    <Target className="text-[#00C897] mr-3" size={22} />
                     <h3 className="text-xl font-semibold">Compétences clés</h3>
                   </div>
                   <div className="space-y-6">
@@ -240,6 +394,18 @@ const CvPage: React.FC<CvPageProps> = ({ onBack }) => {
                       );
                     })}
                   </div>
+                </section>
+
+                <section className="bg-[#2A2433] border border-[#363646] rounded-xl p-6">
+                  <div className="flex items-center mb-4">
+                    <Sparkles className="text-[#00C897] mr-3" size={22} />
+                    <h3 className="text-xl font-semibold">Soft skills</h3>
+                  </div>
+                  <ul className="space-y-2 text-sm text-[#F5F5F5]/80 list-disc list-inside">
+                    {softSkills.map(skill => (
+                      <li key={skill}>{skill}</li>
+                    ))}
+                  </ul>
                 </section>
 
                 <section className="bg-[#2A2433] border border-[#363646] rounded-xl p-6">
@@ -267,6 +433,23 @@ const CvPage: React.FC<CvPageProps> = ({ onBack }) => {
                       </li>
                     ))}
                   </ul>
+                </section>
+
+                <section className="bg-[#2A2433] border border-[#363646] rounded-xl p-6">
+                  <div className="flex items-center mb-4">
+                    <Globe2 className="text-[#00C897] mr-3" size={22} />
+                    <h3 className="text-xl font-semibold">Centres d’intérêt</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {interests.map(interest => (
+                      <span
+                        key={interest}
+                        className="px-3 py-1 rounded-full border border-[#363646] bg-[#1A151F] text-xs text-[#F5F5F5]/80"
+                      >
+                        {interest}
+                      </span>
+                    ))}
+                  </div>
                 </section>
               </div>
             </div>
