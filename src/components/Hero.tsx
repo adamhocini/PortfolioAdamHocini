@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronDown, MapPin, Mail, Languages } from 'lucide-react';
+import { ChevronDown, MapPin, Mail, Globe } from 'lucide-react';
 
 interface HeroProps {
   scrollToSection: (section: string) => void;
@@ -39,7 +39,7 @@ Entre UX, low-code et logique API, je construis des solutions durables, pensées
               <p className="text-[#F5F5F5] text-sm">adam.hocini.ah@icloud.com</p>
             </div>
             <div className="bg-[#2A2A2A]/50 backdrop-blur-sm rounded-lg p-4 hover:bg-[#2A2A2A]/70 transition-all duration-300">
-              <Languages className="text-[#00C897] mx-auto mb-2" size={24} />
+              <Globe className="text-[#00C897] mx-auto mb-2" size={24} />
               <p className="text-[#F5F5F5] text-sm">FR / EN / ES</p>
             </div>
           </div>
