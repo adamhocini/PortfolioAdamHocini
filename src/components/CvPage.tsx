@@ -4,12 +4,11 @@ import {
   Award,
   Brain,
   Briefcase,
-  Calendar,
+  CalendarDays,
   Car,
-  ClipboardList,
-  Code,
   GraduationCap,
-  Heart,
+  IdCard,
+  Languages,
   Linkedin,
   Mail,
   MapPin,
@@ -17,9 +16,10 @@ import {
   Rocket,
   Sparkles,
   Target,
-  User,
   UserCheck,
-  Globe,
+  Workflow,
+  Wrench,
+  Globe2,
 } from 'lucide-react';
 
 interface CvPageProps {
@@ -30,8 +30,8 @@ const CvPage: React.FC<CvPageProps> = ({ onBack }) => {
   const headerRoles = 'Chef de projet IT | Product Owner | Consultant Power Platform';
 
   const profileDetails = [
-    { icon: User, label: 'Nom', value: 'Hocini Adam' },
-    { icon: Calendar, label: 'Date de naissance', value: '21/02/2000' },
+    { icon: IdCard, label: 'Nom', value: 'Hocini Adam' },
+    { icon: CalendarDays, label: 'Date de naissance', value: '21/02/2000' },
     { icon: Car, label: 'Permis', value: 'Permis B – véhicule personnel' },
   ];
 
@@ -129,12 +129,12 @@ const CvPage: React.FC<CvPageProps> = ({ onBack }) => {
     },
     {
       title: 'Développement & Cloud',
-      icon: Code,
+      icon: Workflow,
       items: ['React & TypeScript', 'Intégrations Microsoft 365 & Azure', 'Conception API & CI/CD'],
     },
     {
       title: 'Méthodes & Qualité',
-      icon: ClipboardList,
+      icon: Wrench,
       items: ['Agile / Scrum & Kanban', 'Tests automatisés & documentation', 'Conduite du changement'],
     },
   ];
@@ -422,7 +422,7 @@ const CvPage: React.FC<CvPageProps> = ({ onBack }) => {
 
                 <section className="bg-[#2A2433] border border-[#363646] rounded-xl p-6">
                   <div className="flex items-center mb-4">
-                    <Globe className="text-[#00C897] mr-3" size={22} />
+                    <Languages className="text-[#00C897] mr-3" size={22} />
                     <h3 className="text-xl font-semibold">Langues</h3>
                   </div>
                   <ul className="space-y-2 text-sm text-[#F5F5F5]/80">
@@ -437,7 +437,7 @@ const CvPage: React.FC<CvPageProps> = ({ onBack }) => {
 
                 <section className="bg-[#2A2433] border border-[#363646] rounded-xl p-6">
                   <div className="flex items-center mb-4">
-                    <Heart className="text-[#00C897] mr-3" size={22} />
+                    <Globe2 className="text-[#00C897] mr-3" size={22} />
                     <h3 className="text-xl font-semibold">Centres d’intérêt</h3>
                   </div>
                   <div className="flex flex-wrap gap-2">
