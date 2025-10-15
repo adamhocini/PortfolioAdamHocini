@@ -233,6 +233,8 @@ const About: React.FC = () => {
                       <h4 className="text-xl font-semibold text-white leading-snug">{title}</h4>
                       <p className="text-white/70 text-sm leading-relaxed">{description}</p>
                     </div>
+                    <h4 className="text-xl font-semibold text-white mb-4 leading-snug">{title}</h4>
+                    <p className="text-white/70 leading-relaxed text-sm">{description}</p>
                   </div>
                 </InteractiveGlowCard>
               ))}
