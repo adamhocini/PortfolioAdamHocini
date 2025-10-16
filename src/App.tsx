@@ -66,7 +66,7 @@ function App() {
     setShowProjectsPage(false);
     // Scroll to projects section after returning
     setTimeout(() => {
-      scrollToSection('contact');
+      scrollToSection('projects');
     }, 100);
   };
 
